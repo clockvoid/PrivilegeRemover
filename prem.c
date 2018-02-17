@@ -39,7 +39,7 @@ static pid_t fork_child(int uid, char *command)
 
 int main(int argc, char *argv[])
 {
-    int i, j, k, uid_num;
+    int i, j, k, uid_num = 1000;
     char *command = (char *)malloc(sizeof(char) * 256);
     char *uid = (char *)malloc(sizeof(char) * 256);
     for (i = 1; i < argc; i++) {
