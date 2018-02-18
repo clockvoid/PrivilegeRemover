@@ -42,6 +42,10 @@ int main(int argc, char *argv[])
     int i, j, k, uid_num = 1000;
     char *command = (char *)malloc(sizeof(char) * 256);
     char *uid = (char *)malloc(sizeof(char) * 256);
+    if (command == NULL || uid == NULL) {
+        printf("Memory allocation error\n");
+        exit(-1);
+    }
     for (i = 1; i < argc; i++) {
         if (*argv[i] == '-') {
             switch (*(argv[i] + 1)) {
@@ -54,7 +58,7 @@ int main(int argc, char *argv[])
                 case 'u':
                     for (j = 0; j < strlen(argv[i]); j++) {
                         if (argv[i][j] == '=') {
-                            strcpy(uid, argv[i] + j + 1);
+                            strncpy(uid, argv[i] + j + 1, 255);
                             for (k = 0; k < strlen(uid); k++) {
                                 uid_num += (int)((uid[k] - '0') * pow(10, strlen(uid) - 1 - k));
                             }
@@ -67,7 +71,7 @@ int main(int argc, char *argv[])
                     break;
             }
         } else if (i == argc - 1) {
-            strcpy(command, argv[i]);
+            strncpy(command, argv[i], 255);
             fork_child(uid_num, command);
         } else {
             printf("Invalid input.\n");
@@ -75,6 +79,8 @@ int main(int argc, char *argv[])
             break;
         }
     }
+    free(command);
+    free(uid);
 }
 
 #endif
