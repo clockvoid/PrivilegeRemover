@@ -1,6 +1,9 @@
 
 #include "prem.h"
 
+#include <math.h>
+#include <string.h>
+
 static char *command, *uid;
 static int uid_num;
 

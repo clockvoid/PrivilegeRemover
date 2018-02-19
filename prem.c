@@ -3,6 +3,11 @@
 
 #ifdef __linux__
 
+#include <assert.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <unistd.h>
+
 static void child_process(int error, char *command)
 {
     if (error == 0) {

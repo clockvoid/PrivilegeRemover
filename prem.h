@@ -1,12 +1,6 @@
 
-#include <assert.h>
-#include <sys/types.h>
-#include <sys/wait.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include <stdio.h>
-#include <string.h>
-#include <math.h>
 
 #define HELP ("Useage: prem [OPTION]... [COMMAND]...\n"\
         "Run the command with no privilege.\n\n"\
