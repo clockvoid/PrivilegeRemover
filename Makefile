@@ -2,14 +2,19 @@
 CC=gcc
 LIBS=-lm
 CFLAGS=-Wall -g
-OBJS=prem.o
+SRC=main.c prem.c
+OBJS=$(SRC:%.c=%.o)
 TARGET=prem
 HEADERS=prem.h
 
 $(TARGET): $(OBJS)
-	$(CC) $(OBJS) $(CFLAGS) $(LIBS) -o $(TARGET)
+	$(CC) $(CFLAGS) $(OBJS) -o $(TARGET) $(LIBS)
 
-$(OBJS): $(HEADERS)
+%.o: %.c
+	$(CC) -c $<
 
 clean:
-	rm -f *.o
+	rm -f $(TARGET) $(OBJS)
+
+prem.o: prem.c prem.h
+main.o: main.c prem.h

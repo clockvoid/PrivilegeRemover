@@ -18,7 +18,7 @@ static void child_process(int error, char *command)
     }
 }
 
-static pid_t fork_child(int uid, char *command)
+pid_t fork_child(int uid, char *command)
 {
     pid_t pid;
     uid_t original = getuid();
@@ -35,52 +35,6 @@ static pid_t fork_child(int uid, char *command)
     }
     assert(pid != 0); // child_process never returns
     return pid;
-}
-
-int main(int argc, char *argv[])
-{
-    int i, j, k, uid_num = 1000;
-    char *command = (char *)malloc(sizeof(char) * 256);
-    char *uid = (char *)malloc(sizeof(char) * 256);
-    if (command == NULL || uid == NULL) {
-        printf("Memory allocation error\n");
-        exit(-1);
-    }
-    for (i = 1; i < argc; i++) {
-        if (*argv[i] == '-') {
-            switch (*(argv[i] + 1)) {
-                case 'h':
-                    printf(HELP);
-                    break;
-                case 'v':
-                    printf(VERSION);
-                    break;
-                case 'u':
-                    for (j = 0; j < strlen(argv[i]); j++) {
-                        if (argv[i][j] == '=') {
-                            strncpy(uid, argv[i] + j + 1, 255);
-                            for (k = 0; k < strlen(uid); k++) {
-                                uid_num += (int)((uid[k] - '0') * pow(10, strlen(uid) - 1 - k));
-                            }
-                        }
-                    }
-                    break;
-                default:
-                    printf("Invalid option.\n");
-                    printf(HELP);
-                    break;
-            }
-        } else if (i == argc - 1) {
-            strncpy(command, argv[i], 255);
-            fork_child(uid_num, command);
-        } else {
-            printf("Invalid input.\n");
-            printf(HELP);
-            break;
-        }
-    }
-    free(command);
-    free(uid);
 }
 
 #endif

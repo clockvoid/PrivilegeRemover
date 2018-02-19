@@ -17,6 +17,4 @@
 #define VERSION ("Privilege remover versin, 0.1.0"\
         "\nCopyright clockvoid\n")
 
-static void child_process(int error, char *command);
-
-static pid_t fork_child(int uid, char *command);
+pid_t fork_child(int uid, char *command);
