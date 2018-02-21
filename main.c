@@ -21,7 +21,8 @@ static void change_uid(char const* argv_i) {
         }
     }
     if (j == strlen(argv_i)) {
-        printf("Invalid input: You must input UID value\n");
+        printf("Invalid input: You must input UID value.\n");
+        printf(HELP);
     }
 }
 

@@ -8,7 +8,7 @@
         " -v, --version     print version\n"\
         " -h, --help        print this help message\n"\
         "\nCopyright clockvoid\n")
-#define VERSION ("Privilege remover versin, 0.1.0"\
+#define VERSION ("Privilege remover version, 0.1.0"\
         "\nCopyright clockvoid\n")
 
 pid_t fork_child(int uid, char *command);
