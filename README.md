@@ -9,7 +9,7 @@ This program is very useful in case of running program on server.
 It can avoid program injection attack.
 Especially, in jail such as chroot or container, it is very powerful.
 
-## Installation
+## Build
 You can use make.
 
 ## Usage
